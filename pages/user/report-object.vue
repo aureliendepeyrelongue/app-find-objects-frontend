@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Accueil</h1>
+    <h1>Signaler un objet</h1>
     <div class="row">
       <div class="col-s12"></div>
     </div>

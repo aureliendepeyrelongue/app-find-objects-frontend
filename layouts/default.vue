@@ -15,24 +15,24 @@
       </li>
 
       <li>
-        <NuxtLink to="/"
+        <NuxtLink to="/user/report-object"
           ><i class="material-icons">add</i>Signaler un objet</NuxtLink
         >
       </li>
       <li><div class="divider"></div></li>
       <li>
-        <NuxtLink to="/">
+        <NuxtLink to="/user/objects-list">
           <i class="material-icons">storage</i>Voire tous les objets</NuxtLink
         >
       </li>
       <li>
-        <NuxtLink to="/">
+        <NuxtLink to="/user/my-objects">
           <i class="material-icons">speaker_notes</i>Mes objets
           signalés</NuxtLink
         >
       </li>
       <li>
-        <NuxtLink to="/"
+        <NuxtLink to="/user/see-matching"
           ><i class="material-icons">find_replace</i>Consluter le
           matching</NuxtLink
         >
@@ -43,7 +43,9 @@
         <div class="nav-wrapper">
           <a href="#" class="brand-logo">Findy</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="badges.html">Se déconnecter</a></li>
+            <li><NuxtLink to="/auth/registration">S'inscrire</NuxtLink></li>
+            <li><NuxtLink to="/auth/login">Se connecter</NuxtLink></li>
+            <li><NuxtLink to="/auth/logout">Se déconnecter</NuxtLink></li>
           </ul>
         </div>
       </nav>
