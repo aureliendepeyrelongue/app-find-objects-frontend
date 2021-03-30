@@ -13,14 +13,30 @@
           >
         </div>
       </li>
+
       <li>
-        <a href="#!"><i class="material-icons">cloud</i>Premier lien</a>
+        <NuxtLink to="/"
+          ><i class="material-icons">add</i>Signaler un objet</NuxtLink
+        >
       </li>
-      <li><a href="#!">Second Link</a></li>
       <li><div class="divider"></div></li>
-      <li><a class="subheader">Subheader</a></li>
-      <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-      <li><a class="waves-effect" href="#!">Thhhhhhird Link With Waves</a></li>
+      <li>
+        <NuxtLink to="/">
+          <i class="material-icons">storage</i>Voire tous les objets</NuxtLink
+        >
+      </li>
+      <li>
+        <NuxtLink to="/">
+          <i class="material-icons">speaker_notes</i>Mes objets
+          signalés</NuxtLink
+        >
+      </li>
+      <li>
+        <NuxtLink to="/"
+          ><i class="material-icons">find_replace</i>Consluter le
+          matching</NuxtLink
+        >
+      </li>
     </ul>
     <div id="right-container">
       <nav>
