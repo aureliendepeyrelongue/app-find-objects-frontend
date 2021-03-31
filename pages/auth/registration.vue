@@ -95,6 +95,13 @@
                 </button>
               </div>
             </div>
+            <div v-if="emailAlreadyExists" class="card red darken-2">
+              <div class="card-content white-text">
+                <p>
+                  Erreur : un compte est déjà associé à ce mail.
+                </p>
+              </div>
+            </div>
           </form>
         </div>
       </div>
@@ -114,23 +121,36 @@ export default {
       password: "",
       confirmPassword: "",
       passwordTypedOnce: false,
-      confirmPasswordTypedOnce: false
+      confirmPasswordTypedOnce: false,
+      emailAlreadyExists: false
     };
   },
   mounted() {
-    //M.AutoInit();
+    M.AutoInit();
   },
 
   methods: {
     async register() {
-      const res = await this.$axios.post("/authentication/registration", {
-        firstName: this.firstName,
-        lastName: this.lastName,
-        email: this.email,
-        password: this.password,
-        confirmPassword: this.confirmPassword
-      });
-      console.log(res.data);
+      try {
+        const res = await this.$axios.post("/authentication/registration", {
+          firstName: this.firstName,
+          lastName: this.lastName,
+          email: this.email,
+          password: this.password,
+          confirmPassword: this.confirmPassword
+        });
+
+        if (res.status === 200) {
+          this.$router.push("/");
+        }
+      } catch (err) {
+        // console.error(err);
+        if (err.response) {
+          if (err.response.data.error.code === 11000) {
+            this.emailAlreadyExists = true;
+          }
+        }
+      }
     },
     firstConfirmPasswordType() {
       this.confirmPasswordTypedOnce = true;
