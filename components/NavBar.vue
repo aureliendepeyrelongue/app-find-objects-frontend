@@ -19,10 +19,6 @@
 
 <script>
 export default {
-  mounted() {
-    this.$store.commit("auth/authenticate", false);
-  },
-
   computed: {
     authenticatedComputed() {
       return this.$store.state.auth.authenticated;
