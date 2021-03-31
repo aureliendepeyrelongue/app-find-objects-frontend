@@ -40,7 +40,7 @@
     </ul>
     <div id="right-container">
       <nav>
-        <div class="nav-wrapper">
+        <div class="nav-wrapper purple darken-3">
           <a href="#" class="brand-logo">Findy</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><NuxtLink to="/auth/registration">S'inscrire</NuxtLink></li>
