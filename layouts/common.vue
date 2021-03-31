@@ -1,11 +1,8 @@
 <template>
   <div>
-    <SideNav />
-    <div id="right-container">
-      <NavBar />
-      <div class="container" id="main-content">
-        <Nuxt />
-      </div>
+    <NavBar />
+    <div class="container" id="main-content">
+      <Nuxt />
     </div>
   </div>
 </template>

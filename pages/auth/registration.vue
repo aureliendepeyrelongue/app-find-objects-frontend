@@ -113,6 +113,7 @@
 import M from "materialize-css";
 import emailValidator from "email-validator";
 export default {
+  layout: "common",
   data() {
     return {
       firstName: "",
