@@ -42,7 +42,7 @@ export default {
   buildModules: [],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ["nuxt-i18n"],
+  modules: ["nuxt-i18n", "@nuxtjs/axios"],
   i18n: {
     locales: ["en", "fr"],
     defaultLocale: "fr",
@@ -58,7 +58,9 @@ export default {
       }
     }
   },
-
+  axios: {
+    baseURL: "http://localhost:5000" // Used as fallback if no runtime config is provided
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {}
 };
