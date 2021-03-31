@@ -7,34 +7,90 @@
           <form class="col offset-s2 s8">
             <div class="row">
               <div class="input-field col s6">
-                <input id="first_name" type="text" class="validate" />
+                <input
+                  id="first_name"
+                  v-model="firstName"
+                  type="text"
+                  class="validate"
+                  required
+                />
                 <label for="first_name">Prénom</label>
+                <span
+                  class="helper-text"
+                  data-error="Ce champs ne doit pas être vide."
+                ></span>
               </div>
               <div class="input-field col s6">
-                <input id="last_name" type="text" class="validate" />
+                <input
+                  id="last_name"
+                  v-model="lastName"
+                  type="text"
+                  class="validate"
+                  required
+                />
                 <label for="last_name">Nom de famille</label>
+                <span
+                  class="helper-text"
+                  data-error="Ce champs ne doit pas être vide."
+                ></span>
               </div>
             </div>
 
             <div class="row">
               <div class="input-field col s12">
-                <input id="email" type="email" class="validate" />
+                <input
+                  id="email"
+                  v-model="email"
+                  type="email"
+                  class="validate"
+                  required
+                />
                 <label for="email">Email</label>
+                <span
+                  class="helper-text"
+                  data-error="L'email n'est pas valide."
+                ></span>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s6">
-                <input id="password" type="password" class="validate" />
+                <input
+                  id="password"
+                  v-model="password"
+                  type="password"
+                  @keydown.once="firstPasswordType"
+                  @click.once="firstPasswordType"
+                  :class="classInvalidPasswordComputed"
+                />
                 <label for="password">Mot de passe</label>
+                <span
+                  class="helper-text"
+                  data-error="Le mot de passe doit faire au moins 6 caractères."
+                ></span>
               </div>
               <div class="input-field col s6">
-                <input id="confirm_password" type="password" class="validate" />
+                <input
+                  id="confirm_password"
+                  v-model="confirmPassword"
+                  type="password"
+                  @keydown.once="firstConfirmPasswordType"
+                  @click.once="firstConfirmPasswordType"
+                  :class="classInvalidConfirmPasswordComputed"
+                />
                 <label for="confirm_password">Confirmer le mot de passe</label>
+                <span
+                  class="helper-text"
+                  data-error="Les mots de passe sont vides ou ne concordent pas."
+                ></span>
               </div>
             </div>
             <div class="row">
               <div class="col s12">
-                <button class="btn teal wave-effect right">
+                <button
+                  @click.prevent="register"
+                  class="btn teal wave-effect right"
+                  :disabled="!formIsValidComputed"
+                >
                   s'inscrire
                 </button>
               </div>
@@ -48,6 +104,7 @@
 
 <script>
 import M from "materialize-css";
+import emailValidator from "email-validator";
 export default {
   data() {
     return {
@@ -55,13 +112,55 @@ export default {
       lastName: "",
       email: "",
       password: "",
-      confirmPassword: ""
+      confirmPassword: "",
+      passwordTypedOnce: false,
+      confirmPasswordTypedOnce: false
     };
   },
   mounted() {
-    M.AutoInit();
+    //M.AutoInit();
+  },
+
+  methods: {
+    async register() {
+      const res = await this.$axios.post("/authentication/registration", {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email,
+        password: this.password,
+        confirmPassword: this.confirmPassword
+      });
+      console.log(res.data);
+    },
+    firstConfirmPasswordType() {
+      this.confirmPasswordTypedOnce = true;
+    },
+    firstPasswordType() {
+      this.passwordTypedOnce = true;
+    }
+  },
+  computed: {
+    classInvalidPasswordComputed() {
+      return this.passwordTypedOnce === true && this.password.length < 6
+        ? "invalid"
+        : "";
+    },
+    classInvalidConfirmPasswordComputed() {
+      return (this.confirmPasswordTypedOnce === true &&
+        this.password !== this.confirmPassword) ||
+        (this.confirmPasswordTypedOnce === true && this.confirmPassword === "")
+        ? "invalid"
+        : "";
+    },
+    formIsValidComputed() {
+      return (
+        this.firstName !== "" &&
+        this.lastName !== "" &&
+        emailValidator.validate(this.email) &&
+        this.password.length >= 6 &&
+        this.password === this.confirmPassword
+      );
+    }
   }
 };
 </script>
-
-<style></style>
