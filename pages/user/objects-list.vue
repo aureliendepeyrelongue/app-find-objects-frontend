@@ -17,7 +17,7 @@
 export default {
   async asyncData({ params, $axios }) {
     const res = await $axios.get("/objects");
-    console.log(res.data);
+
     return { objects: res.data };
   }
 };

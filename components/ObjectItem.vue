@@ -2,7 +2,7 @@
   <div>
     <div class="card">
       <div class="card-image">
-        <img src="http://localhost:5000/images/object2.jpg" />
+        <img src="http://localhost:5000/images/object-various.jpg" />
       </div>
       <div class="card-content">
         <span class="card-title"
