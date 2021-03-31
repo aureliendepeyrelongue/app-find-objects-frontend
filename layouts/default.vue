@@ -78,5 +78,6 @@ nav .brand-logo {
 
 h1 {
   font-size: 1.9rem;
+  padding: 20px;
 }
 </style>
