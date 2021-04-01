@@ -10,7 +10,7 @@
         >
         <p>Description : {{ object.category.description }}</p>
         <p>Lieux : {{ locationComputed }}</p>
-        <p></p>
+        <p>Auteur : {{ object.user.firstName }} {{ object.user.lastName }}</p>
       </div>
       <div class="card-action">
         <a href="#">Voir en détails</a>
