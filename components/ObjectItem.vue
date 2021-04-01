@@ -5,14 +5,24 @@
         <img src="http://localhost:5000/images/object-various.jpg" />
       </div>
       <div class="card-content">
-        <span class="card-title"
-          >Objet : {{ object.category.value }} {{ object.state }}</span
-        >
+        <span class="card-title">Objet : {{ object.category.value }}</span>
+        <p>Statut : {{ object.state }}</p>
         <p>Description : {{ object.category.description }}</p>
         <p>Lieux : {{ locationComputed }}</p>
-        <p>Auteur : {{ object.user.firstName }} {{ object.user.lastName }}</p>
+        <p v-if="!personal">
+          Auteur :
+
+          {{ object.user.firstName }} {{ object.user.lastName }}
+        </p>
+        <p v-else>
+          Auteur : Moi
+        </p>
       </div>
-      <div class="card-action">
+      <div v-if="personal" class="card-action">
+        <a class="btn teal small" href="#">Modifier</a>
+        <a class="btn red small" href="#">Supprimer</a>
+      </div>
+      <div v-else class="card-action">
         <a href="#">Voir en détails</a>
       </div>
     </div>
@@ -22,7 +32,8 @@
 <script>
 export default {
   props: {
-    object: Object
+    object: Object,
+    personal: Boolean
   },
   data() {
     return {};

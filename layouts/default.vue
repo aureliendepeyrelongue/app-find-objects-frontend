@@ -38,4 +38,10 @@ h1 {
   font-size: 1.9rem;
   padding: 20px;
 }
+.empty-message {
+  font-size: 1.6rem;
+  padding: 20px;
+  color: #555;
+  text-align: center;
+}
 </style>
