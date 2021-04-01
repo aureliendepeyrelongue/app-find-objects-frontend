@@ -3,13 +3,11 @@
     <li>
       <div class="user-view">
         <div class="background">
-          <img src="" />
+          <img src="/office.jpg" />
         </div>
-        <a href="#user"><img class="circle" src=""/></a>
-        <a href="#name"><span class="white-text name">John Doe</span></a>
-        <a href="#email"
-          ><span class="white-text email">jdandturk@gmail.com</span></a
-        >
+        <a href="#user"><img class="circle" src="/anonymous-user.png"/></a>
+        <span class="white-text name">{{ usernameComputed }}</span>
+        <span class="white-text email">{{ emailComputed }}</span>
       </div>
     </li>
 
@@ -37,3 +35,18 @@
     </li>
   </ul>
 </template>
+
+<script>
+export default {
+  computed: {
+    usernameComputed() {
+      return (
+        this.$store.state.user.firstName + " " + this.$store.state.user.lastName
+      );
+    },
+    emailComputed() {
+      return this.$store.state.user.email;
+    }
+  }
+};
+</script>

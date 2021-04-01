@@ -92,6 +92,10 @@ export default {
         if (res.status === 200) {
           console.log(res.data);
           this.$axios.setToken(res.data.token, "Bearer");
+          this.$store.commit("user/setFirstName", res.data.user.firstName);
+          this.$store.commit("user/setLastName", res.data.user.lastName);
+          this.$store.commit("user/setEmail", res.data.user.email);
+
           this.$store.commit("auth/authenticate", true);
           this.$router.push("/user/my-objects");
         }

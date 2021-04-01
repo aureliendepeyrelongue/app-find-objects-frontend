@@ -10,7 +10,9 @@
           <NuxtLink to="/auth/login">Se connecter</NuxtLink>
         </li>
         <li v-if="authenticatedComputed">
-          <NuxtLink to="/auth/logout">Se déconnecter</NuxtLink>
+          <button @click="disconnect" class="btn purple darken-1 margin-right">
+            Se déconnecter
+          </button>
         </li>
       </ul>
     </div>
@@ -23,6 +25,19 @@ export default {
     authenticatedComputed() {
       return this.$store.state.auth.authenticated;
     }
+  },
+  methods: {
+    disconnect() {
+      this.$axios.setToken(false, "Bearer");
+      this.$store.commit("auth/authenticate", false);
+      this.$router.push("/");
+    }
   }
 };
 </script>
+
+<style scoped>
+nav button.btn.margin-right {
+  margin-right: 15px;
+}
+</style>
