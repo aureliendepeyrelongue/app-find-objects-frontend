@@ -138,7 +138,7 @@
                   class="btn teal wave-effect right"
                   :disabled="!formIsValidComputed"
                 >
-                  signaler l'objet
+                  {{ update ? "mettre à jour" : "signaler l'objet" }}
                 </button>
               </div>
             </div>
@@ -153,21 +153,30 @@
 import M from "materialize-css";
 export default {
   props: {
-    object: Object
+    pstate: String,
+    plocation: String,
+    pcity: String,
+    pzipcode: String,
+    pstreet: String,
+    pcategory: String,
+    pdescription: String,
+    pwhen: String,
+    update: Boolean
   },
   mounted() {
     M.AutoInit();
+    M.updateTextFields();
   },
   data() {
     return {
-      state: "",
-      location: "",
-      city: "",
-      zipcode: "",
-      street: "",
-      category: "",
-      description: "",
-      when: null
+      state: this.pstate || "",
+      location: this.plocation || "",
+      city: this.pcity || "",
+      zipcode: this.pzipcode || "",
+      street: this.pstreet || "",
+      category: this.pcategory || "",
+      description: this.pdescription || "",
+      when: this.pwhen || null
     };
   },
   methods: {

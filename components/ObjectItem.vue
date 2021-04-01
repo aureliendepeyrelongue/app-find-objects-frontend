@@ -19,7 +19,7 @@
         </p>
       </div>
       <div v-if="personal" class="card-action">
-        <a class="btn teal small" href="#">Modifier</a>
+        <a class="btn teal small" @click="updateRoute">Modifier</a>
         <a class="btn red small" href="#">Supprimer</a>
       </div>
       <div v-else class="card-action">
@@ -42,6 +42,11 @@ export default {
   computed: {
     locationComputed() {
       return `${this.object.location.value}, ${this.object.location.locationAddress.street}, ${this.object.location.locationAddress.city}, ${this.object.location.locationAddress.zipcode}`;
+    }
+  },
+  methods: {
+    updateRoute() {
+      this.$router.push("/user/update-object/" + this.object._id);
     }
   }
 };
