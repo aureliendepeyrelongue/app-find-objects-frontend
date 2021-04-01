@@ -5,7 +5,11 @@
       <div class="col s12">
         <div class="row">
           <div class="col s4" v-for="(item, index) in objects" :key="index">
-            <object-item :object="item" :personal="true"></object-item>
+            <object-item
+              :object="item"
+              @delete="deleteObject"
+              :personal="true"
+            ></object-item>
           </div>
         </div>
       </div>
@@ -25,6 +29,13 @@ export default {
   async asyncData({ params, $axios }) {
     const res = await $axios.get("/objects/from-user");
     return { objects: res.data };
+  },
+
+  methods: {
+    async deleteObject(objectId) {
+      const res = await this.$axios.delete("/objects/" + objectId);
+      this.objects = this.objects.filter(el => el._id != objectId).slice();
+    }
   }
 };
 </script>

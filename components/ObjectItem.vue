@@ -2,7 +2,7 @@
   <div>
     <div class="card">
       <div class="card-image">
-        <img src="http://localhost:5000/images/object-various.jpg" />
+        <img src="/object-various.jpg" />
       </div>
       <div class="card-content">
         <span class="card-title">Objet : {{ object.category.value }}</span>
@@ -20,7 +20,7 @@
       </div>
       <div v-if="personal" class="card-action">
         <a class="btn teal small" @click="updateRoute">Modifier</a>
-        <a class="btn red small" href="#">Supprimer</a>
+        <a class="btn red small" @click="sendDelete" href="#">Supprimer</a>
       </div>
       <div v-else class="card-action">
         <a href="#">Voir en détails</a>
@@ -47,6 +47,9 @@ export default {
   methods: {
     updateRoute() {
       this.$router.push("/user/update-object/" + this.object._id);
+    },
+    sendDelete() {
+      this.$emit("delete", this.object._id);
     }
   }
 };
